@@ -99,7 +99,7 @@ export const withApiRedux = (WrappedComponent) => {
 
         const method = `onApiRedux${action}`;
         this.getWrapped()[method] &&
-          this.getWrapped()[method](apiAction.error || apiAction[scope.toLowerCase()]);
+          this.getWrapped()[method](!apiAction.error || !!apiAction[scope.toLowerCase()]);
       });
     }
 
