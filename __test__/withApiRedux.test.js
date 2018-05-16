@@ -122,5 +122,61 @@ describe('withApiRedux HOC', () => {
     } = setup(Parent);
 
     expect(wrapper.instance().getWrapped().constructor.name).toBe('Component')
-  });  
+  });
+
+  const truthy = [true, -1, 1, ' ', [], {}];
+  const falsy  = [false, 0, '', null, undefined, NaN];
+
+  [
+    ['Index', 'records'],
+    ['New', 'record'],
+    ['Create', 'record'],
+    ['Update', 'record'],
+    ['Show', 'record'],
+    ['Edit', 'record'],
+    ['Destroy', 'record']
+  ].forEach(config => {
+    const [action, scope] = config;
+    const method = `onApiRedux${action}`;
+
+    truthy.forEach(t => {
+      const t_v = JSON.stringify(t);
+
+      falsy.forEach(f => {
+        [true, false].forEach(arg => {
+          test(`Call ${method} with ${arg} argument when error is "${arg ? f : t_v}" and ${scope} is "${arg ? t_v : f}"`, () => {
+            class Component extends React.Component {
+              constructor(props) {
+                super(props);
+                this[method] = jest.fn();
+              }
+
+              render() {
+                return <div />;
+              }
+            }
+            
+            const {
+              wrapper,
+              componentInstance
+            } = setup(Component);
+
+            [true, false].forEach(fetching => {
+              wrapper.setProps({
+                [BACKEND_ACTIONS[action.toUpperCase()]]: {
+                  [scope]: arg ? t : f,
+                  error: arg ? f : t,
+                  fetching
+                }
+              });
+            });
+            expect(componentInstance[method]).toHaveBeenCalledTimes(1);
+            expect(componentInstance[method]).toBeCalledWith(arg);
+          });
+        });
+      });
+    });
+  });
+
+      
 });
