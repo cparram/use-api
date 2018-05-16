@@ -38,15 +38,14 @@ const withPagination = WrappedComponent => {
       const {
         [BACKEND_ACTIONS.INDEX]: {
           pagination
-        },
-        apiIndexRequest,
+        }
       } = this.props;
       // Get the current page
       const page = pagination.page;
       // updates current list of records (optional)
       this.paginatable.apiReduxIndex && 
         typeof this.paginatable.apiReduxIndex === 'function' &&
-          apiIndexRequest(this.paginatable.apiReduxIndex(page, perPage));
+          this.paginatable.apiReduxIndex(page, perPage);
     };
 
     /**
@@ -59,15 +58,14 @@ const withPagination = WrappedComponent => {
       const {
         [BACKEND_ACTIONS.INDEX]: {
           pagination
-        },
-        apiIndexRequest,
+        }
       } = this.props;
       // Get the current per page value
       const perPage = pagination.perPage;
       // updates current list of records (optional)
       this.paginatable.apiReduxIndex && 
         typeof this.paginatable.apiReduxIndex === 'function' &&
-          apiIndexRequest(this.paginatable.apiReduxIndex(page, perPage));
+          this.paginatable.apiReduxIndex(page, perPage);
     };
 
     render() {
