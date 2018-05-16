@@ -14,13 +14,13 @@ const API_ACTIONS = [
 
 // Backend actions.
 const BACKEND_ACTIONS = {
-  'NEW':     '@_new_@',
-  'CREATE':  '@_create_@',
-  'UPDATE':  '@_update_@',
-  'INDEX':   '@_index_@',
-  'SHOW':    '@_show_@',
-  'EDIT':    '@_edit_@',
-  'DESTROY': '@_destroy_@',
+  'NEW':     'apiNewState',
+  'CREATE':  'apiCreateState',
+  'UPDATE':  'apiUpdateState',
+  'INDEX':   'apiIndexState',
+  'SHOW':    'apiShowState',
+  'EDIT':    'apiEditState',
+  'DESTROY': 'apiDestroyState',
 };
 
 // Redux actions.
