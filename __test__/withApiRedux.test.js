@@ -98,5 +98,29 @@ describe('withApiRedux HOC', () => {
         expect(wrapper.props().onFetchingChange).toHaveBeenLastCalledWith(v);
       });
     });
-  });    
+  });
+
+  test(`Use apiReduxRef overrides ref`, () => {
+    class Component extends React.Component {
+      componentDidMount() {
+        this.props.apiReduxRef(this)
+      };
+
+      render() {
+        return <div />;
+      }
+    }
+
+    class Parent extends React.Component {      
+      render() {
+        return <Component {...this.props}/>;
+      }
+    }
+
+    const {
+      wrapper,
+    } = setup(Parent);
+
+    expect(wrapper.instance().getWrapped().constructor.name).toBe('Component')
+  });  
 });

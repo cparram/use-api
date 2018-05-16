@@ -59,7 +59,7 @@ export const withApiRedux = (WrappedComponent) => {
         apiReduxIndex,
         apiReduxShow,
         apiReduxEdit,
-      } = this.wrapped;
+      } = this.getWrapped();
 
       apiReduxNew && apiReduxNew();
       apiReduxIndex && apiReduxIndex();
@@ -98,8 +98,8 @@ export const withApiRedux = (WrappedComponent) => {
           return;
 
         const method = `onApiRedux${action}`;
-        this.wrapped[method] &&
-          this.wrapped[method](apiAction.error || apiAction[scope.toLowerCase()]);
+        this.getWrapped()[method] &&
+          this.getWrapped()[method](apiAction.error || apiAction[scope.toLowerCase()]);
       });
     }
 
@@ -110,11 +110,13 @@ export const withApiRedux = (WrappedComponent) => {
       }, false);
     }
 
+    getWrapped = () => this.apiReduxRef || this.wrapped;
+
     render() {
       return (
         <WrappedComponent
+          apiReduxRef={ref => this.apiReduxRef = ref}
           ref={ref => this.wrapped = ref}
-          apiReduxRef={ref => this.wrapped = ref}
           { ...this.props }
         />
       );
