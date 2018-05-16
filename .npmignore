@@ -1,0 +1,11 @@
+__test__/
+styleguidist/
+docs/
+.nvmrc
+.travis.yml
+.eslintrc.yml
+.gitignore
+.git/
+styleguide.config.js
+*.log
+src/
