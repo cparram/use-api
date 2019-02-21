@@ -165,7 +165,5 @@ export default (WrappedComponent) => {
   return connect(
     mapStateToProps,
     mapDispatchToProps,
-    null,
-    { withRef: true }
   )(component);
 };
