@@ -2,7 +2,7 @@ import React from 'react';
 import withApiReduxConnected, { withApiRedux } from '../src/hocs/withApiRedux';
 import configureMockStore from 'redux-mock-store';
 import Enzyme, { mount } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-15';
+import Adapter from 'enzyme-adapter-react-16';
 import { titleize, combine } from './utils';
 import { getInit } from '../src/init';
 import {
