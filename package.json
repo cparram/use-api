@@ -1,51 +1,20 @@
 {
-  "name": "react-api-redux",
-  "version": "2.0.1",
+  "name": "@cparram/api-redux",
+  "version": "3.0.1",
   "main": "lib",
   "author": "César Parra <cesar.parramoreno@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-eslint": "^8.2.3",
-    "babel-jest": "^22.4.3",
-    "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-es2015-arrow-functions": "^6.22.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.9.1",
     "eslint": "^4.19.1",
-    "eslint-plugin-react": "^7.7.0",
-    "fetch-mock": "^6.3.0",
-    "jest": "^22.4.3",
-    "prop-types": "^15.7.2",
-    "react": "^16.8.3",
-    "react-dom": "^16.8.3",
-    "react-test-renderer": "15",
-    "redux-mock-store": "^1.5.1",
-    "redux-thunk": "^2.2.0",
+    "eslint-config-airbnb-base": "^13.1.0",
     "size-limit": "^0.21.1"
   },
   "scripts": {
     "build": "babel src -d lib",
     "size": "size-limit",
-    "test": "jest",
     "lint": "./node_modules/.bin/eslint src/**/*.js src/*.js"
-  },
-  "dependencies": {
-    "babel-plugin-transform-inline-environment-variables": "^0.4.1",
-    "babel-plugin-transform-react-jsx": "^6.24.1",
-    "lodash": "^4.17.4",
-    "react-redux": "^6.0.1",
-    "redux": "^4.0.1",
-    "redux-actions": "^2.3.2",
-    "redux-api-middleware": "^2.3.0",
-    "reselect": "^4.0.0"
-  },
-  "peerDependencies": {
-    "prop-types": "^15.7.2",
-    "react": "^16.8.3",
-    "react-dom": "^16.8.3"
   }
 }
