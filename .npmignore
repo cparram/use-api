@@ -9,3 +9,11 @@ docs/
 styleguide.config.js
 *.log
 src/
+# mac files
+.DS_Store
+*.swn
+*.swo
+*.swp
+babel.config.js
+.size-limit.js
+.browserslistrc
