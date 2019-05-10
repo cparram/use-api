@@ -2,7 +2,7 @@ import {
   FETCH_START, FETCH_SUCCESS, FETCH_FAILED,
 } from './constants';
 
-export const initialState = {
+export const init = {
   fetching: false,
   error: false,
   data: undefined,
@@ -50,10 +50,10 @@ function apiReducer(state, action) {
  */
 export const reducer = (state = {}, action) => {
   if (!/^FETCH_/.test(action.type)) return state;
-  const resource = action.meta;
-  const apiState = state[resource] || initialState;
+  const key = action.meta;
+  const apiState = state[key] || init;
   return {
     ...state,
-    [resource]: apiReducer(apiState, action),
+    [key]: apiReducer(apiState, action),
   };
 };

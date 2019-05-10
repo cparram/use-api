@@ -5,13 +5,13 @@ node_js:
 
 sudo: false
 
-cache:
-  yarn: true
-  directories:
-    - ".eslintcache"
-    - "node_modules"
+cache: npm
+
+before_install:
+  - npm install -g npm-audit-resolver
 
 script:
-  - yarn run lint
-  - yarn run build
-  - yarn run size
+  - check-audit
+  - npm run lint
+  - npm run build
+  - npm run size

@@ -1,3 +1,9 @@
 extends: airbnb-base
 globals:
   fetch: readonly
+rules:
+  "import/no-unresolved":
+    - 2
+    - ignore:
+      - 'react'
+      - 'react-use-redux'
