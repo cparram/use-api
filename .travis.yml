@@ -1,18 +1,17 @@
 language: node_js
 
 node_js:
-  - "8"
+  - "11"
 
 sudo: false
 
-cache:
-  yarn: true
-  directories:
-    - ".eslintcache"
-    - "node_modules"
+cache: npm
+
+before_install:
+  - npm install -g npm-audit-resolver
 
 script:
-  - yarn run lint
-  - yarn run build
-  - yarn run test
-  - yarn run size
+  - check-audit
+  - npm run lint
+  - npm run build
+  - npm run size

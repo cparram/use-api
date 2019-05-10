@@ -1,40 +1,9 @@
-env:
-  browser: true
-  es6: true
-extends: 
-  - 'eslint:recommended'
-  - 'plugin:react/recommended'
-parser: 'babel-eslint'
-parserOptions:
-  ecmaFeatures:
-    experimentalObjectRestSpread: true
-    arrowFunctions: true
-    jsx: true
-  sourceType: module
-plugins:
-  - react
+extends: airbnb-base
+globals:
+  fetch: readonly
 rules:
-  strict: 0
-  no-unused-vars:
-    - error
-    - 
-      argsIgnorePattern: '^_'
-      varsIgnorePattern: '[iI]gnored'
-      args: 'all'
-  indent:
-    - error
+  "import/no-unresolved":
     - 2
-  linebreak-style:
-    - error
-    - unix
-  quotes:
-    - error
-    - single
-  semi:
-    - error
-    - always
-  func-style:
-    - error
-    - expression
-    - 
-      allowArrowFunctions: true
+    - ignore:
+      - 'react'
+      - 'react-use-redux'

@@ -1,161 +1,77 @@
-import {
-  ACTIONS,
-  API,
-  BACKEND_ACTIONS
-} from './constants';
-import {
-  getJSON
-} from 'redux-api-middleware';
+import { FETCH_START, FETCH_FAILED, FETCH_SUCCESS } from './constants';
 
 /**
- * Builds a request type action.
+ * Redux action triggered before fetching.
+ *
+ * @param {string} meta - The resource name.
+ * @returns {object} A redux action.
  */
-const apiRequest = config => ({
-  [API]: config
+const start = meta => ({
+  type: FETCH_START,
+  meta,
 });
 
 /**
- * Build action for new request type action.
+ * Redux action triggered after ending fetching successfully.
+ *
+ * @param {string} meta - The resource name.
+ * @param {object} payload - The request response.
+ * @returns {object} A redux action.
  */
-const apiNew = (opts = {}) => apiRequest({
-  ...opts,
-  types: [
-    ACTIONS.API_NEW_START,
-    ACTIONS.API_NEW_SUCCESS,
-    ACTIONS.API_NEW_FAILURE
-  ],
-  apiAction: BACKEND_ACTIONS.NEW
+const success = (meta, payload) => ({
+  type: FETCH_SUCCESS,
+  payload,
+  meta,
 });
 
 /**
- * Build action for create request type action.
+ * Redux action triggered after ending fetching with errors.
+ *
+ * @param {string} meta - The resource name.
+ * @param {object} payload - The request response.
+ * @return {object} A redux action.
  */
-const apiCreate = (opts = {}) => apiRequest({
-  ...opts,
-  method: 'POST',
-  types: [
-    ACTIONS.API_CREATE_START,
-    ACTIONS.API_CREATE_SUCCESS,
-    ACTIONS.API_CREATE_FAILURE
-  ],
-  apiAction: BACKEND_ACTIONS.CREATE
+const failure = (meta, payload) => ({
+  type: FETCH_FAILED,
+  payload,
+  meta,
 });
 
 /**
- * Build action for update request type action.
+ * Action responsible to manage api call.
+ *
+ * @param {string} resource - The resource api.
+ * @param {object} opts - The opts passed to fetch.
+ * @returns {func} A nested function used on redux.
  */
-const apiUpdate = (opts = {}) => apiRequest({
-  ...opts,
-  method: 'PUT',
-  types: [
-    ACTIONS.API_UPDATE_START,
-    ACTIONS.API_UPDATE_SUCCESS,
-    ACTIONS.API_UPDATE_FAILURE
-  ],
-  apiAction: BACKEND_ACTIONS.UPDATE
-});
+export default (resource, opts) => (dispatch) => {
+  dispatch(start(resource));
 
-/**
- * Build action for index request type action.
- */
-const apiIndex = ({ additive = false, ...opts} = {}) => apiRequest({
-  ...opts,
-  types: [
-    ACTIONS.API_INDEX_START,
-    {
-      type: ACTIONS.API_INDEX_SUCCESS,
-      payload: (_action, _state, res) => {
-        const headers = res.headers;
+  const {
+    endpoint,
+    headers: origHeaders,
+    body,
+    onResponse = json => json,
+    ...other
+  } = opts;
 
-        return getJSON(res).then((json) => ({
-          records: json,
-          pagination: {
-            total: parseInt(headers.get('X-Total')),
-            perPage: parseInt(headers.get('X-Per-Page')),
-            page: parseInt(headers.get('X-Page')),
-          }
-        }));
-      },
-      meta: {
-        additive
-      }
-    },
-    ACTIONS.API_INDEX_FAILURE,
-  ],
-  apiAction: BACKEND_ACTIONS.INDEX
-});
+  const headers = {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+    ...origHeaders,
+  };
 
-/**
- * Build action for show request type action.
- */
-const apiShow = (opts = {}) => apiRequest({
-  ...opts,
-  types: [
-    ACTIONS.API_SHOW_START,
-    {
-      type: ACTIONS.API_SHOW_SUCCESS,
-      payload: (_action, _state, res) => {
-        const headers = res.headers;
-
-        return getJSON(res).then((json) => ({
-          record: json,
-          headers: {
-            'Etag' : headers.get('Etag'),
-            'Last-Modified': headers.get('Last-Modified')
-          }
-        }));
-      }
-    },
-    ACTIONS.API_SHOW_FAILURE,
-  ],
-  apiAction: BACKEND_ACTIONS.SHOW
-});
-
-/**
- * Build action for edit request type action.
- */
-const apiEdit = (opts = {}) => apiRequest({
-  ...opts,
-  types: [
-    ACTIONS.API_EDIT_START,
-    ACTIONS.API_EDIT_SUCCESS,
-    ACTIONS.API_EDIT_FAILURE
-  ],
-  apiAction: BACKEND_ACTIONS.EDIT
-});
-
-/**
- * Build action for destroy request type action.
- */
-const apiDestroy = (opts = {}) => apiRequest({
-  ...opts,
-  method: 'DELETE',
-  types: [
-    ACTIONS.API_DESTROY_START,
-    ACTIONS.API_DESTROY_SUCCESS,
-    ACTIONS.API_DESTROY_FAILURE
-  ],
-  apiAction: BACKEND_ACTIONS.DESTROY
-});
-
-/**
- * Build action to clear api action state.
- */
-const clear = (apiAction, apiResource) => ({
-  type: ACTIONS.CLEAR,
-  payload: {
-    apiAction,
-    apiResource
-  }
-});
-
-export {
-  apiNew,
-  apiCreate,
-  apiUpdate,
-  apiIndex,
-  apiShow,
-  apiEdit,
-  apiDestroy,
-  clear,
+  return fetch(endpoint, {
+    headers,
+    body: body ? JSON.stringify(body) : undefined,
+    ...other,
+  }).then(response => response.json().then((json) => {
+    const requestResponse = {
+      response,
+      data: json,
+    };
+    const args = [resource, onResponse(json, response)];
+    dispatch(response.ok ? success(...args) : failure(...args));
+    return requestResponse;
+  }));
 };
