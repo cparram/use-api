@@ -4,13 +4,15 @@ import request from './actions';
 import { init } from './reducer';
 
 /**
- * Simplest hook to manage api calls
- *
+ * @description Simplest hook to manage api calls.
  * @param {string} key - The resource associated to the api conecction.
- * @param {object} apiConfig - The default callApi options.
- * @returns {func} The hook to use api.
+ * @param {Object} apiConfig - The default callApi options.
+ * @example
+ * // returns [{fechtching: false, data: undefined, error: false}, function()]
+ * useApi('posts');
+ * @returns {Array} The hook to use api.
  */
-export default (key, apiConfig = {}) => {
+const useApi = (key, apiConfig = {}) => {
   const apiState = useSelector(state => state.api[key] || init, key);
 
   const dispatch = useDispatch();
@@ -18,3 +20,4 @@ export default (key, apiConfig = {}) => {
 
   return [apiState, apiCall];
 };
+export default useApi;

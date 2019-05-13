@@ -11,12 +11,15 @@
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsdoc": "^4.8.4",
+    "jsdoc": "^3.6.2",
     "size-limit": "^0.21.1"
   },
   "scripts": {
     "build": "babel src -d lib",
     "size": "size-limit",
-    "lint": "./node_modules/.bin/eslint src/**/*.js src/*.js"
+    "lint": "./node_modules/.bin/eslint src/**/*.js src/*.js",
+    "docs": "./node_modules/.bin/jsdoc -d docs/ src/ --readme README.md"
   },
   "peerDependencies": {
     "react": "^16.8.3",
