@@ -16,7 +16,7 @@
     "size-limit": "^0.21.1"
   },
   "scripts": {
-    "build": "babel src -d lib",
+    "build": "babel src -d lib --no-comments",
     "size": "size-limit",
     "lint": "./node_modules/.bin/eslint src/**/*.js src/*.js",
     "docs": "./node_modules/.bin/jsdoc -d docs/ src/ --readme README.md"
