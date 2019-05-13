@@ -57,7 +57,7 @@ function apiReducer(state, action) {
  * reducer(state, action);
  * @returns {Object} The redux action.
  */
-export const reducer = (state = {}, action) => {
+const reducer = (state = {}, action) => {
   if (!/^FETCH_/.test(action.type)) return state;
   const key = action.meta;
   const apiState = state[key] || init;
@@ -66,3 +66,4 @@ export const reducer = (state = {}, action) => {
     [key]: apiReducer(apiState, action),
   };
 };
+export default reducer;
