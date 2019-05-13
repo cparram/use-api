@@ -18,7 +18,8 @@
   "scripts": {
     "build": "babel src -d lib",
     "size": "size-limit",
-    "lint": "./node_modules/.bin/eslint src/**/*.js src/*.js"
+    "lint": "./node_modules/.bin/eslint src/**/*.js src/*.js",
+    "docs": "./node_modules/.bin/jsdoc -d docs/ src/ --readme README.md"
   },
   "peerDependencies": {
     "react": "^16.8.3",
