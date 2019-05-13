@@ -8,7 +8,7 @@ rules:
     - 2
     - ignore:
       - 'react'
-      - 'react-use-redux'
+      - 'react-redux'
   "jsdoc/check-alignment": 1
   "jsdoc/check-examples": 1
   "jsdoc/check-indentation": 1

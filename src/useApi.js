@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-use-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import request from './actions';
 import { init } from './reducer';
 
