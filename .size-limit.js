@@ -3,6 +3,6 @@ module.exports = [
     path: ["lib/**/*.js"],
     webpack: false,
     gzip: false,
-    limit: "15 KB"
+    limit: "10 KB"
   }
 ]
