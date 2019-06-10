@@ -1,6 +1,6 @@
 {
-  "name": "@cparram/react-api-redux",
-  "version": "3.0.3",
+  "name": "@cparram/use-api",
+  "version": "0.1.0",
   "main": "lib",
   "author": "César Parra <cesar.parramoreno@gmail.com>",
   "license": "MIT",
@@ -8,6 +8,7 @@
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
+    "better-docs": "^1.1.6",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
@@ -19,7 +20,7 @@
     "build": "babel src -d lib --no-comments",
     "size": "size-limit",
     "lint": "./node_modules/.bin/eslint src/**/*.js src/*.js",
-    "docs": "./node_modules/.bin/jsdoc -d docs/ src/ --readme README.md"
+    "docs": "./node_modules/.bin/jsdoc -c jsdoc.conf.json"
   },
   "peerDependencies": {
     "react": "^16.8.3",

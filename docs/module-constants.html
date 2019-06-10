@@ -1,11 +1,9 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: actions.js</title>
+    <title>JSDoc: constants</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -61,106 +59,292 @@
             <div class="column is-9-desktop">
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
-                        <p>Source</p>
-                        <h1>actions.js</h1>
+                        <p>Module</p>
+                        <h1>constants</h1>
                     </header>
                     
                     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/** @module actions */
-import { FETCH_START, FETCH_FAILED, FETCH_SUCCESS } from './constants';
+        
+    
+</header>
 
-/**
- * @description Redux action triggered before fetching.
- * @param {string} meta - The resource name.
- * @example
- * // returns { type: 'FETCH_START', meta: 'posts' }
- * start('posts');
- * @returns {Object} A redux action.
- */
-const start = meta => ({
-  type: FETCH_START,
-  meta,
-});
+<article>
+    <div class="container-overview">
+    
+        
 
-/**
- * @description Redux action triggered after ending fetching successfully.
- * @param {string} meta - The resource name.
- * @param {Object} payload - The request response.
- * @example
- * // returns { type: 'FETCH_SUCCESS', payload: { data: true } , meta: 'posts' }
- * success('posts', { data: true });
- * @returns {Object} A redux action.
- */
-const success = (meta, payload) => ({
-  type: FETCH_SUCCESS,
-  payload,
-  meta,
-});
+        
+    
+    </div>
 
-/**
- * @description Redux action triggered after ending fetching with errors.
- * @param {string} meta - The resource name.
- * @param {Object} payload - The request response.
- * @example
- * // returns { type: 'FETCH_FAILED', payload: { data: true }, meta: 'posts' }
- * failure('posts', { data: true });
- * @returns {Object} A redux action.
- */
-const failure = (meta, payload) => ({
-  type: FETCH_FAILED,
-  payload,
-  meta,
-});
+    
 
-/**
- * @description Action responsible to manage api call.
- * @param {string} resource - The resource api.
- * @param {Object} opts - The opts passed to fetch.
- * @example
- * request('posts', { method: 'GET' });
- * @returns {function(): Promise} A nested function used on redux.
- */
-const request = (resource, opts) => (dispatch) => {
-  dispatch(start(resource));
+    
 
-  const {
-    endpoint,
-    headers: origHeaders,
-    body,
-    onResponse = json => json,
-    ...other
-  } = opts;
+    
 
-  const headers = {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-    ...origHeaders,
-  };
+    
 
-  return fetch(endpoint, {
-    headers,
-    body: body ? JSON.stringify(body) : undefined,
-    ...other,
-  }).then(response => response.json().then((json) => {
-    const requestResponse = {
-      response,
-      data: json,
-    };
-    const args = [resource, onResponse(json, response)];
-    dispatch(response.ok ? success(...args) : failure(...args));
-    return requestResponse;
-  }));
-};
-export default request;
-</code></pre>
-        </article>
-    </section>
+    
+
+    
+
+    
+        <div class='vertical-section'>
+            <h3 class="title"><span>Members</span></h3>
+            <div class="members">
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<span class="param-type">string</span>
+
+
+    </span>
+
+<h4 class="name" id=".FETCH_FAILED">
+    
+        
+            <span class='tag'>static</span>
+        
+            <span class='tag'>constant</span>
+        
+    
+    <span class="code-name">
+        FETCH_FAILED
+    </span>
+</h4>
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="constants.js.html" class="button">View Source</a>
+            <span>
+                <a href="constants.js.html">constants.js</a>, <a href="constants.js.html#line16">line 16</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<span class="param-type">string</span>
+
+
+    </span>
+
+<h4 class="name" id=".FETCH_START">
+    
+        
+            <span class='tag'>static</span>
+        
+            <span class='tag'>constant</span>
+        
+    
+    <span class="code-name">
+        FETCH_START
+    </span>
+</h4>
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="constants.js.html" class="button">View Source</a>
+            <span>
+                <a href="constants.js.html">constants.js</a>, <a href="constants.js.html#line6">line 6</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<span class="param-type">string</span>
+
+
+    </span>
+
+<h4 class="name" id=".FETCH_SUCCESS">
+    
+        
+            <span class='tag'>static</span>
+        
+            <span class='tag'>constant</span>
+        
+    
+    <span class="code-name">
+        FETCH_SUCCESS
+    </span>
+</h4>
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="constants.js.html" class="button">View Source</a>
+            <span>
+                <a href="constants.js.html">constants.js</a>, <a href="constants.js.html#line11">line 11</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+            </div>
+        </div>
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

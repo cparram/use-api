@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: reducer</title>
+    <title>JSDoc: actions</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -60,7 +60,7 @@
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
                         <p>Module</p>
-                        <h1>reducer</h1>
+                        <h1>actions</h1>
                     </header>
                     
                     
@@ -107,14 +107,14 @@
                 <div class="member">
 
     
-    <h4 class="name" id="~apiReducer">
+    <h4 class="name" id="~failure">
         
             
                 <span class='tag'>inner</span>
             
         
         <span class="code-name">
-            apiReducer<span class="signature">(state, action)</span><span class="type-signature"> &rarr; {Object}</span>
+            failure<span class="signature">(meta, payload)</span><span class="type-signature"> &rarr; {Object}</span>
         </span>
     </h4>
     
@@ -122,7 +122,7 @@
     
     
     <div class="description">
-        Reducer for api actions.
+        Redux action triggered after ending fetching with errors.
     </div>
     
 
@@ -160,13 +160,13 @@
         
 <tr class="deep-level-0">
   
-      <td class="name"><code>state</code></td>
+      <td class="name"><code>meta</code></td>
   
 
   <td class="type">
   
       
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
   
@@ -176,7 +176,7 @@
 
   
 
-  <td class="description last">The api state.</td>
+  <td class="description last">The resource name.</td>
 </tr>
 
 
@@ -185,7 +185,7 @@
         
 <tr class="deep-level-0">
   
-      <td class="name"><code>action</code></td>
+      <td class="name"><code>payload</code></td>
   
 
   <td class="type">
@@ -201,7 +201,7 @@
 
   
 
-  <td class="description last">The triggered action.</td>
+  <td class="description last">The request response.</td>
 </tr>
 
 
@@ -246,9 +246,9 @@
 
     
         <p class="tag-source">
-            <a href="reducer.js.html" class="button">View Source</a>
+            <a href="actions.js.html" class="button">View Source</a>
             <span>
-                <a href="reducer.js.html">reducer.js</a>, <a href="reducer.js.html#line23">line 23</a>
+                <a href="actions.js.html">actions.js</a>, <a href="actions.js.html#line41">line 41</a>
             </span>
         </p>
     
@@ -279,7 +279,7 @@
 
 <div class="columns">
     
-    <div class='param-desc column is-7'>The new api State.</div>
+    <div class='param-desc column is-7'>A redux action.</div>
     
     
     <div class='column is-5 has-text-left'>
@@ -301,10 +301,8 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>// returns { fetching: true, data: undefined, error: false }
-state = { fetching: false, data: undefined, error: false };
-action = { type: 'FETCH_START', meta: 'posts' };
-apiReducer(state, action);</code></pre>
+    <pre class="prettyprint"><code>// returns { type: 'FETCH_FAILED', payload: { data: true }, meta: 'posts' }
+failure('posts', { data: true });</code></pre>
 
 
 </div>
@@ -312,14 +310,14 @@ apiReducer(state, action);</code></pre>
                 <div class="member">
 
     
-    <h4 class="name" id="~reducer">
+    <h4 class="name" id="~request">
         
             
                 <span class='tag'>inner</span>
             
         
         <span class="code-name">
-            reducer<span class="signature">(state, action)</span><span class="type-signature"> &rarr; {Object}</span>
+            request<span class="signature">(resource, opts)</span><span class="type-signature"> &rarr; {function}</span>
         </span>
     </h4>
     
@@ -327,7 +325,7 @@ apiReducer(state, action);</code></pre>
     
     
     <div class="description">
-        The reducer adapter.
+        Action responsible to manage api call.
     </div>
     
 
@@ -365,13 +363,13 @@ apiReducer(state, action);</code></pre>
         
 <tr class="deep-level-0">
   
-      <td class="name"><code>state</code></td>
+      <td class="name"><code>resource</code></td>
   
 
   <td class="type">
   
       
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
   
@@ -381,7 +379,7 @@ apiReducer(state, action);</code></pre>
 
   
 
-  <td class="description last">The redux state.</td>
+  <td class="description last">The resource api.</td>
 </tr>
 
 
@@ -390,7 +388,7 @@ apiReducer(state, action);</code></pre>
         
 <tr class="deep-level-0">
   
-      <td class="name"><code>action</code></td>
+      <td class="name"><code>opts</code></td>
   
 
   <td class="type">
@@ -406,7 +404,7 @@ apiReducer(state, action);</code></pre>
 
   
 
-  <td class="description last">The action triggered.</td>
+  <td class="description last">The opts passed to fetch.</td>
 </tr>
 
 
@@ -451,9 +449,9 @@ apiReducer(state, action);</code></pre>
 
     
         <p class="tag-source">
-            <a href="reducer.js.html" class="button">View Source</a>
+            <a href="actions.js.html" class="button">View Source</a>
             <span>
-                <a href="reducer.js.html">reducer.js</a>, <a href="reducer.js.html#line60">line 60</a>
+                <a href="actions.js.html">actions.js</a>, <a href="actions.js.html#line55">line 55</a>
             </span>
         </p>
     
@@ -484,7 +482,184 @@ apiReducer(state, action);</code></pre>
 
 <div class="columns">
     
-    <div class='param-desc column is-7'>The redux action.</div>
+    <div class='param-desc column is-7'>A nested function used on redux.</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">function</span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>request('posts', { method: 'GET' });</code></pre>
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="~start">
+        
+            
+                <span class='tag'>inner</span>
+            
+        
+        <span class="code-name">
+            start<span class="signature">(meta)</span><span class="type-signature"> &rarr; {Object}</span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Redux action triggered before fetching.
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>meta</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">The resource name.</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="actions.js.html" class="button">View Source</a>
+            <span>
+                <a href="actions.js.html">actions.js</a>, <a href="actions.js.html#line12">line 12</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>A redux action.</div>
     
     
     <div class='column is-5 has-text-left'>
@@ -506,10 +681,211 @@ apiReducer(state, action);</code></pre>
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>// returns { posts: { fetching: true, data: undefined, error: false }}
-state = { posts: { fetching: false, data: undefined, error: false } };
-action = { type: 'FETCH_START', meta: 'posts' };
-reducer(state, action);</code></pre>
+    <pre class="prettyprint"><code>// returns { type: 'FETCH_START', meta: 'posts' }
+start('posts');</code></pre>
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="~success">
+        
+            
+                <span class='tag'>inner</span>
+            
+        
+        <span class="code-name">
+            success<span class="signature">(meta, payload)</span><span class="type-signature"> &rarr; {Object}</span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Redux action triggered after ending fetching successfully.
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>meta</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">The resource name.</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>payload</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Object</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">The request response.</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="actions.js.html" class="button">View Source</a>
+            <span>
+                <a href="actions.js.html">actions.js</a>, <a href="actions.js.html#line26">line 26</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>A redux action.</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Object</span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>// returns { type: 'FETCH_SUCCESS', payload: { data: true } , meta: 'posts' }
+success('posts', { data: true });</code></pre>
 
 
 </div>
@@ -535,7 +911,7 @@ reducer(state, action);</code></pre>
 
 <footer class="footer">
     <div class="content has-text-centered">
-        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.2</a> on Mon Jun 10 2019 22:49:11 GMT+0000 (Coordinated Universal Time)</p>
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.2</a> on Mon Jun 10 2019 22:49:39 GMT+0000 (Coordinated Universal Time)</p>
         <p class="sidebar-created-by">
             <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
             <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers</a>

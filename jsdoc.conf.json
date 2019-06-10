@@ -1,0 +1,35 @@
+{
+    "tags": {
+        "allowUnknownTags": true
+    },
+    "source": {
+        "include": ["./src"],
+        "includePattern": ".js$",
+        "excludePattern": "(node_modules/|docs)"
+    },
+    "plugins": [
+        "node_modules/better-docs/category"
+    ],
+    "opts": {
+        "encoding": "utf8",
+        "destination": "docs/",
+        "readme": "README.md",
+        "package": "package.json",
+        "recurse": true,
+        "verbose": true,
+        "template": "node_modules/better-docs"
+    },
+    "templates": {
+        "cleverLinks": false,
+        "monospaceLinks": false,
+        "better-docs": {
+            "name": "useApi Documentation",
+            "navigation": [
+                {
+                    "label": "Github",
+                    "href": "https://github.com/SoftwareBrothers/admin-bro"
+                }
+            ]
+        }
+    }
+}

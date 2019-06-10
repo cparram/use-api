@@ -5,7 +5,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>JSDoc: actions.js</title>
+    <title>JSDoc: reducer.js</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -62,7 +62,7 @@
                 <div class="content" id="main-content-wrapper">
                     <header class="page-title">
                         <p>Source</p>
-                        <h1>actions.js</h1>
+                        <h1>reducer.js</h1>
                     </header>
                     
                     
@@ -72,92 +72,75 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/** @module actions */
-import { FETCH_START, FETCH_FAILED, FETCH_SUCCESS } from './constants';
+            <pre class="prettyprint source linenums"><code>/** @module reducer */
+import {
+  FETCH_START, FETCH_SUCCESS, FETCH_FAILED,
+} from './constants';
 
-/**
- * @description Redux action triggered before fetching.
- * @param {string} meta - The resource name.
- * @example
- * // returns { type: 'FETCH_START', meta: 'posts' }
- * start('posts');
- * @returns {Object} A redux action.
- */
-const start = meta => ({
-  type: FETCH_START,
-  meta,
-});
-
-/**
- * @description Redux action triggered after ending fetching successfully.
- * @param {string} meta - The resource name.
- * @param {Object} payload - The request response.
- * @example
- * // returns { type: 'FETCH_SUCCESS', payload: { data: true } , meta: 'posts' }
- * success('posts', { data: true });
- * @returns {Object} A redux action.
- */
-const success = (meta, payload) => ({
-  type: FETCH_SUCCESS,
-  payload,
-  meta,
-});
-
-/**
- * @description Redux action triggered after ending fetching with errors.
- * @param {string} meta - The resource name.
- * @param {Object} payload - The request response.
- * @example
- * // returns { type: 'FETCH_FAILED', payload: { data: true }, meta: 'posts' }
- * failure('posts', { data: true });
- * @returns {Object} A redux action.
- */
-const failure = (meta, payload) => ({
-  type: FETCH_FAILED,
-  payload,
-  meta,
-});
-
-/**
- * @description Action responsible to manage api call.
- * @param {string} resource - The resource api.
- * @param {Object} opts - The opts passed to fetch.
- * @example
- * request('posts', { method: 'GET' });
- * @returns {function(): Promise} A nested function used on redux.
- */
-const request = (resource, opts) => (dispatch) => {
-  dispatch(start(resource));
-
-  const {
-    endpoint,
-    headers: origHeaders,
-    body,
-    onResponse = json => json,
-    ...other
-  } = opts;
-
-  const headers = {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-    ...origHeaders,
-  };
-
-  return fetch(endpoint, {
-    headers,
-    body: body ? JSON.stringify(body) : undefined,
-    ...other,
-  }).then(response => response.json().then((json) => {
-    const requestResponse = {
-      response,
-      data: json,
-    };
-    const args = [resource, onResponse(json, response)];
-    dispatch(response.ok ? success(...args) : failure(...args));
-    return requestResponse;
-  }));
+export const init = {
+  fetching: false,
+  error: false,
+  data: undefined,
 };
-export default request;
+
+/**
+ * @description Reducer for api actions.
+ * @param {Object} state - The api state.
+ * @param {Object} action - The triggered action.
+ * @example
+ * // returns { fetching: true, data: undefined, error: false }
+ * state = { fetching: false, data: undefined, error: false };
+ * action = { type: 'FETCH_START', meta: 'posts' };
+ * apiReducer(state, action);
+ * @returns {Object} The new api State.
+ */
+function apiReducer(state, action) {
+  const { payload: data } = action;
+  switch (action.type) {
+    case FETCH_START:
+      return {
+        ...state,
+        fetching: true,
+      };
+    case FETCH_SUCCESS:
+      return {
+        ...state,
+        fetching: false,
+        error: false,
+        data,
+      };
+    case FETCH_FAILED:
+      return {
+        ...state,
+        fetching: false,
+        error: true,
+        data,
+      };
+    default:
+      return state;
+  }
+}
+/**
+ * @description The reducer adapter.
+ * @param {Object} state - The redux state.
+ * @param {Object} action - The action triggered.
+ * @example
+ * // returns { posts: { fetching: true, data: undefined, error: false }}
+ * state = { posts: { fetching: false, data: undefined, error: false } };
+ * action = { type: 'FETCH_START', meta: 'posts' };
+ * reducer(state, action);
+ * @returns {Object} The redux action.
+ */
+const reducer = (state = {}, action) => {
+  if (!/^FETCH_/.test(action.type)) return state;
+  const key = action.meta;
+  const apiState = state[key] || init;
+  return {
+    ...state,
+    [key]: apiReducer(apiState, action),
+  };
+};
+export default reducer;
 </code></pre>
         </article>
     </section>
@@ -172,7 +155,7 @@ export default request;
 
 <footer class="footer">
     <div class="content has-text-centered">
-        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.2</a> on Mon Jun 10 2019 22:49:11 GMT+0000 (Coordinated Universal Time)</p>
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.2</a> on Mon Jun 10 2019 22:49:39 GMT+0000 (Coordinated Universal Time)</p>
         <p class="sidebar-created-by">
             <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
             <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers</a>
