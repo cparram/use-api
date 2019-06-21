@@ -4,7 +4,7 @@ React Hook to manages Api calls with redux.
 
 ## Getting Started
 
-These instructions will get you a copy of this package  up and running on your project. Do you what to contribute? Please refer to [CONTRIBUTING.md](CONTRIBUTING.md)
+These instructions will get you a copy of this package  up and running on your project.
 
 ### Install dependencies
 

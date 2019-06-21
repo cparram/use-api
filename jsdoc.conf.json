@@ -14,7 +14,6 @@
         "encoding": "utf8",
         "destination": "docs/",
         "readme": "README.md",
-        "package": "package.json",
         "recurse": true,
         "verbose": true,
         "template": "node_modules/better-docs"
@@ -22,12 +21,20 @@
     "templates": {
         "cleverLinks": false,
         "monospaceLinks": false,
+        "default": {
+            "staticFiles": {
+              "include": [
+                  "./docs-src"
+              ]
+            }
+        },
         "better-docs": {
-            "name": "useApi Documentation",
+            "name": "useApi",
+            "logo": "logo.png",
             "navigation": [
                 {
                     "label": "Github",
-                    "href": "https://github.com/SoftwareBrothers/admin-bro"
+                    "href": "https://github.com/cparram/use-api"
                 }
             ]
         }
