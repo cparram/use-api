@@ -1,6 +1,9 @@
 __test__/
 styleguidist/
 docs/
+docs-src/
+jsdoc.conf.json
+Dockerfile
 .nvmrc
 .travis.yml
 .eslintrc.yml
