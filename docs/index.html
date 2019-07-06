@@ -27,7 +27,7 @@
                         <img src="logo.png" alt="logo">
                     
                      
-                        <h1 class="navbar-item">useApi</h1>
+                        <h1 class="navbar-item">useReduxApi</h1>
                     
                     <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
                         <span aria-hidden="true"></span>
@@ -40,7 +40,7 @@
                     <div class="navbar-end">
                     
                         <div class="navbar-item">
-                            <a href="https://github.com/cparram/use-api" target="_blank">Github</a>
+                            <a href="https://github.com/cparram/use-redux-api" target="_blank">Github</a>
                         </div>
                     
                     </div>
@@ -89,26 +89,26 @@
 
 
     <section>
-        <article><h1>useApi <a href="https://travis-ci.com/cparram/use-api"><img src="https://travis-ci.com/cparram/use-api.svg?branch=master" alt="Build Status"></a></h1>
+        <article><h1>useReduxApi <a href="https://travis-ci.com/cparram/use-redux-api"><img src="https://travis-ci.com/cparram/use-redux-api.svg?branch=master" alt="Build Status"></a></h1>
 <p>React Hook to manages Api calls with redux.</p>
 <h2>Getting Started</h2>
 <p>These instructions will get you a copy of this package  up and running on your project.</p>
 <h3>Install dependencies</h3>
 <p>Ensure packages are installed with correct version numbers by running:</p>
 <pre class="prettyprint source lang-sh"><code>(
-  export PKG=@cparram/use-api;
+  export PKG=@cparram/use-redux-api;
   npm info &quot;$PKG&quot; peerDependencies --json | command sed 's/[\{\},]//g ; s/: /@/g; s/ *//g' | xargs npm install --save &quot;$PKG&quot;
 )
 </code></pre>
 <p>Which produces and runs a command like:</p>
-<pre class="prettyprint source lang-sh"><code>npm install --save @cparram/use-api react@>=#.## react-redux@>=#.## redux@>=#.##
+<pre class="prettyprint source lang-sh"><code>npm install --save @cparram/use-redux-api react@>=#.## react-redux@>=#.## redux@>=#.##
 </code></pre>
 <h2>Usage</h2>
 <ol>
 <li>Connect reducer into store configuration:</li>
 </ol>
 <pre class="prettyprint source lang-js"><code>import { combineReducers } from 'redux';
-import { apiReducer } from '@cparram/use-api';
+import { apiReducer } from '@cparram/use-redux-api';
 
 const appReducer = combineReducers({
   api: apiReducer,
@@ -119,10 +119,10 @@ const appReducer = combineReducers({
 <li>Use Hook into funcional components:</li>
 </ol>
 <pre class="prettyprint source lang-js"><code>import React, { useEffect } from 'react';
-import useApi from '@cparram/use-api';
+import useReduxApi from '@cparram/use-redux-api';
 
 const Component = props => {
-  const [api, apiCall] = useApi('redux-store-key')
+  const [api, apiCall] = useReduxApi('redux-store-key')
   // Call api on component mount
   useEffect(() => {
     apiCall({ endpoint: 'your-endpoint.com' })
@@ -130,7 +130,7 @@ const Component = props => {
   // ... rest of the component
 }
 </code></pre>
-<p><a href="https://codesandbox.io/s/cparramuse-api-5g07i?autoresize=1&amp;fontsize=14"><img src="https://codesandbox.io/static/img/play-codesandbox.svg" alt="Edit @cparram/use-api"></a></p>
+<p><a href="https://codesandbox.io/s/cparramuse-redux-api-5g07i?autoresize=1&amp;fontsize=14"><img src="https://codesandbox.io/static/img/play-codesandbox.svg" alt="Edit @cparram/use-redux-api"></a></p>
 <h2>CONTRIBUTING</h2>
 <p>As this project is build over node v11, the recomendation for development is docker. You can also use nvm.</p>
 <h3>Development</h3>
@@ -152,12 +152,12 @@ docker run -it -v &quot;$PWD&quot;:/app use_api npm run size
 <li><a href="https://redux.js.org">Redux</a> - A predictable state container for JavaScript.</li>
 </ul>
 <h2>Versioning</h2>
-<p>We use <a href="http://semver.org/">SemVer</a> for versioning. For the versions available, see the <a href="https://github.com/cparram/use-api/tags">tags on this repository</a>.</p>
+<p>We use <a href="http://semver.org/">SemVer</a> for versioning. For the versions available, see the <a href="https://github.com/cparram/use-redux-api/tags">tags on this repository</a>.</p>
 <h2>Authors</h2>
 <ul>
 <li><strong>César Parra</strong> - <em>Initial work</em> - <a href="https://github.com/cparram">@cparram</a></li>
 </ul>
-<p>See also the list of <a href="https://github.com/cparram/use-api/contributors">contributors</a> who participated in this project.</p>
+<p>See also the list of <a href="https://github.com/cparram/use-redux-api/contributors">contributors</a> who participated in this project.</p>
 <h2>License</h2>
 <p>This project is licensed under the MIT License - see the <a href="LICENSE.md">LICENSE.md</a> file for details</p></article>
     </section>
@@ -174,7 +174,7 @@ docker run -it -v &quot;$PWD&quot;:/app use_api npm run size
 
 <footer class="footer">
     <div class="content has-text-centered">
-        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.2</a> on Sat Jul 06 2019 04:26:51 GMT+0000 (Coordinated Universal Time)</p>
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.2</a> on Sat Jul 06 2019 05:05:54 GMT+0000 (Coordinated Universal Time)</p>
         <p class="sidebar-created-by">
             <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
             <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers</a>
