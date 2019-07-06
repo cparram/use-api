@@ -29,12 +29,12 @@
             }
         },
         "better-docs": {
-            "name": "useApi",
+            "name": "useReduxApi",
             "logo": "logo.png",
             "navigation": [
                 {
                     "label": "Github",
-                    "href": "https://github.com/cparram/use-api"
+                    "href": "https://github.com/cparram/use-redux-api"
                 }
             ]
         }
