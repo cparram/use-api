@@ -1,4 +1,4 @@
-# useApi [![Build Status](https://travis-ci.com/cparram/use-api.svg?branch=master)](https://travis-ci.com/cparram/use-api)
+# useReduxApi [![Build Status](https://travis-ci.com/cparram/use-redux-api.svg?branch=master)](https://travis-ci.com/cparram/use-redux-api)
 
 React Hook to manages Api calls with redux.
 
@@ -11,7 +11,7 @@ These instructions will get you a copy of this package  up and running on your p
 Ensure packages are installed with correct version numbers by running:
   ```sh
   (
-    export PKG=@cparram/use-api;
+    export PKG=@cparram/use-redux-api;
     npm info "$PKG" peerDependencies --json | command sed 's/[\{\},]//g ; s/: /@/g; s/ *//g' | xargs npm install --save "$PKG"
   )
   ```
@@ -19,7 +19,7 @@ Ensure packages are installed with correct version numbers by running:
   Which produces and runs a command like:
 
   ```sh
-  npm install --save @cparram/use-api react@>=#.## react-redux@>=#.## redux@>=#.##
+  npm install --save @cparram/use-redux-api react@>=#.## react-redux@>=#.## redux@>=#.##
   ```
 
 ## Usage
@@ -28,7 +28,7 @@ Ensure packages are installed with correct version numbers by running:
 
 ```js
 import { combineReducers } from 'redux';
-import { apiReducer } from '@cparram/use-api';
+import { apiReducer } from '@cparram/use-redux-api';
 
 const appReducer = combineReducers({
   api: apiReducer,
@@ -39,10 +39,10 @@ const appReducer = combineReducers({
 2. Use Hook into funcional components:
 ```js
 import React, { useEffect } from 'react';
-import useApi from '@cparram/use-api';
+import useReduxApi from '@cparram/use-redux-api';
 
 const Component = props => {
-  const [api, apiCall] = useApi('redux-store-key')
+  const [api, apiCall] = useReduxApi('redux-store-key')
   // Call api on component mount
   useEffect(() => {
     apiCall({ endpoint: 'your-endpoint.com' })
@@ -50,7 +50,7 @@ const Component = props => {
   // ... rest of the component
 }
 ```
-[![Edit @cparram/use-api](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/cparramuse-api-5g07i?autoresize=1&fontsize=14)
+[![Edit @cparram/use-redux-api](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/cparramuse-redux-api-5g07i?autoresize=1&fontsize=14)
 
 ## CONTRIBUTING
 
@@ -85,13 +85,13 @@ docker run -it -v "$PWD":/app use_api npm run size
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/cparram/use-api/tags). 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/cparram/use-redux-api/tags). 
 
 ## Authors
 
 * **César Parra** - *Initial work* - [@cparram](https://github.com/cparram)
 
-See also the list of [contributors](https://github.com/cparram/use-api/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/cparram/use-redux-api/contributors) who participated in this project.
 
 ## License
 
