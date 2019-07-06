@@ -1,4 +1,4 @@
-/** @module useApi */
+/** @module useReduxApi */
 import { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import request from './actions';
@@ -9,15 +9,15 @@ import { init } from './reducer';
  * @param {string} key - The resource associated to the api conecction.
  * @param {Object} apiConfig - The default callApi options.
  * @example
- * import useApi from '@cparram/use-api'
+ * import useReduxApi from '@cparram/use-redux-api'
  *
  * const FunctionalComponent = () => {
  *   // returns [{fechtching: false, data: undefined, error: false}, function()]
- *   const [apiState, apiCall] = useApi('posts');
+ *   const [apiState, apiCall] = useReduxApi('posts');
  * }
  * @returns {Array} The hook to use api.
  */
-const useApi = (key, apiConfig = {}) => {
+const useReduxApi = (key, apiConfig = {}) => {
   const apiState = useSelector(state => state.api[key] || init, key);
 
   const dispatch = useDispatch();
@@ -25,4 +25,4 @@ const useApi = (key, apiConfig = {}) => {
 
   return [apiState, apiCall];
 };
-export default useApi;
+export default useReduxApi;
