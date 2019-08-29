@@ -60,6 +60,8 @@ const request = (resource, opts) => (dispatch) => {
     headers: origHeaders,
     body,
     onResponse = json => json,
+    baseUrl,
+    path,
     ...other
   } = opts;
 
@@ -69,7 +71,7 @@ const request = (resource, opts) => (dispatch) => {
     ...origHeaders,
   };
 
-  return fetch(endpoint, {
+  return fetch(endpoint || `${baseUrl}${path}`, {
     headers,
     body: body ? JSON.stringify(body) : undefined,
     ...other,

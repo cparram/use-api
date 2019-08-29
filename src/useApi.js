@@ -9,12 +9,12 @@ import { init } from './reducer';
  * @param {string} key - The resource associated to the api conecction.
  * @param {Object} apiConfig - The default callApi options.
  * @example
- * import useReduxApi from '@cparram/use-redux-api'
+ * import useReduxApi from '@cparram/use-redux-api';
  *
  * const FunctionalComponent = () => {
  *   // returns [{fechtching: false, data: undefined, error: false}, function()]
  *   const [apiState, apiCall] = useReduxApi('posts');
- * }
+ * };
  * @returns {Array} The hook to use api.
  */
 const useReduxApi = (key, apiConfig = {}) => {
