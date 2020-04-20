@@ -63,7 +63,7 @@ As this project is build over node v11, the recomendation for development is doc
 A step by step series of examples that tell you how to get a development env running.
 
 ```sh
-docker build -t use_api .
+docker run -it --rm -v "$PWD":/app -w /app npm i 
 ```
 
 #### Running the tests
@@ -71,10 +71,10 @@ docker build -t use_api .
 Plese refer to travis config file
 
 ```sh
-docker run -it -v "$PWD":/app use_api check-audit
-docker run -it -v "$PWD":/app use_api npm run lint
-docker run -it -v "$PWD":/app use_api npm run build
-docker run -it -v "$PWD":/app use_api npm run size
+docker run -it --rm -v "$PWD":/app -w /app npm audit 
+docker run -it --rm -v "$PWD":/app -w /app npm run lint
+docker run -it --rm -v "$PWD":/app -w /app npm run build
+docker run -it --rm -v "$PWD":/app -w /app npm run size
 ```
 
 ## Built With

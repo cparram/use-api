@@ -1,6 +1,6 @@
 /** @module useReduxApi */
 import { useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import request from './actions';
 import { init } from './reducer';
 
@@ -18,7 +18,7 @@ import { init } from './reducer';
  * @returns {Array} The hook to use api.
  */
 const useReduxApi = (key, apiConfig = {}) => {
-  const apiState = useSelector(state => state.api[key] || init, key);
+  const apiState = useSelector(state => state.api[key] || init, shallowEqual);
 
   const dispatch = useDispatch();
   const apiCall = useCallback(opts => dispatch(request(key, { ...apiConfig, ...opts })), [key]);
