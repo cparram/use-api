@@ -21,7 +21,7 @@ const useReduxApi = (key) => {
   const apiState = useSelector(state => state.api[key] || init, shallowEqual);
 
   const dispatch = useDispatch();
-  const apiCall = useCallback(opts => dispatch(request(key, merge(config, opts))), [key]);
+  const apiCall = useCallback(opts => dispatch(request(key, merge(opts, config))), [key]);
 
   return [apiState, apiCall];
 };
