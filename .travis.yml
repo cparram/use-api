@@ -10,7 +10,7 @@ cache: npm
 before_install:
 
 script:
-  - npm audit
+  - npm audit --audit-level=moderate
   - npm run lint
   - npm run build
   - npm run size
